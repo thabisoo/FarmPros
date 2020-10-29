@@ -1,0 +1,79 @@
+﻿@model FarmPros.ApplicationLogic.ViewModels.FarmViewModels.FarmViewModel
+
+<div class="form-group col-md-6 ml-0 pl-0">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" placeholder="Farm Name">
+</div>
+
+<div class="form-group col-md-6 ml-0 pl-0">
+    <label asp-for="StreetAddress"></label>
+    <input asp-for="StreetAddress" class="form-control" onfocus="geolocate()" placeholder="Street Address">
+</div>
+
+<div class="form-group col-md-6 ml-0 pl-0">
+    <label asp-for="Surburb"></label>
+    <input asp-for="Surburb" class="form-control" placeholder="Surburb">
+</div>
+
+<div class="form-group col-md-6 ml-0 pl-0">
+    <label asp-for="City"></label>
+    <input asp-for="City" class="form-control" placeholder="City">
+</div>
+
+<div class="form-group col-md-6 ml-0 pl-0">
+    <label asp-for="Province"></label>
+    <input asp-for="Province" class="form-control" placeholder="Province">
+</div>
+
+<div class="form-group col-md-6 ml-0 pl-0">
+    <label asp-for="Country"></label>
+    <input asp-for="Country" class="form-control" placeholder="Country">
+</div>
+
+<div class="form-group col-md-6 ml-0 pl-0">
+    <label asp-for="PostalCode"></label>
+    <input asp-for="PostalCode" class="form-control" placeholder="Postal Code">
+</div>
+
+<script>
+    let placeSearch;
+    let autocomplete;
+
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById("StreetAddress"),
+            { types: ["geocode"] }
+        );
+
+        autocomplete.setFields(["address_component"]);
+        autocomplete.addListener("place_changed", fillInAddress);
+    }
+
+    function fillInAddress() {
+        const place = autocomplete.getPlace();
+        var components = place.address_components;
+
+        document.getElementById('StreetAddress').value = components[0].long_name + " " + components[1].long_name;
+        document.getElementById('Surburb').value = components[2].long_name;
+        document.getElementById('City').value = components[3].long_name;
+        document.getElementById('Province').value = components[5].long_name;
+        document.getElementById('Country').value = components[6].long_name;
+        document.getElementById('PostalCode').value = components[7].long_name;
+    }
+
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+                const circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy,
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
+    }
+</script>

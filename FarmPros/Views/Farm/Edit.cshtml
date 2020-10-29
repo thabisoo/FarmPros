@@ -1,0 +1,12 @@
+﻿@model FarmPros.ApplicationLogic.ViewModels.FarmViewModels.FarmViewModel
+@{
+    ViewData["Title"] = $"Edit {Model.Name}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<form asp-area="" asp-controller="Farm" asp-action="Edit" method="post" onsubmit="btnSubmit.disabled = true; return true;">
+    <partial name="_CreateEdit" />
+    <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+</form>

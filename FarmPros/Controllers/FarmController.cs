@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FarmPros.ApplicationLogic.Entities.AddressEntities;
 using FarmPros.ApplicationLogic.Entities.FarmEntities;
 using FarmPros.ApplicationLogic.Services.Interfaces;
-using FarmPros.ApplicationLogic.ViewModels.AddressViewModels;
 using FarmPros.ApplicationLogic.ViewModels.FarmViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,24 +23,36 @@ namespace FarmPros.Controllers
             return View();
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }    
+
         [HttpPost]
-        public async Task<IActionResult> AddFarm(FarmViewModel model)
+        public async Task<IActionResult> Create(FarmViewModel model)
         {
             await _farmService.AddFarmAsync(new FarmEntity
             {
-                Name = model.Name,
-                Address = new AddressEntity
-                {
-
-                }
+                Name = model.Name
             });
             
-            return View("MyFarms", GetUserFarms());
+            return View("Index", GetUserFarms());
         }
 
-        public IActionResult MyFarms()
+        public IActionResult Edit(Guid id)
         {
-            return View(GetUserFarms());
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(FarmViewModel model)
+        {
+            await _farmService.AddFarmAsync(new FarmEntity
+            {
+                Name = model.Name
+            });
+
+            return View("Index", GetUserFarms());
         }
 
         private IEnumerable<FarmViewModel> GetUserFarms()
@@ -52,8 +62,7 @@ namespace FarmPros.Controllers
             var userFarmViewModels = farms.Select(f => new FarmViewModel
             {
                 Id = f.Id,
-                Name = f.Name,
-                Address = new AddressViewModel()
+                Name = f.Name
             });
 
             return userFarmViewModels;

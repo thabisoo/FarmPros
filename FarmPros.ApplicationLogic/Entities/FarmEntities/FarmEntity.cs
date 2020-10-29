@@ -1,5 +1,4 @@
-﻿using FarmPros.ApplicationLogic.Entities.AddressEntities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +8,5 @@ namespace FarmPros.ApplicationLogic.Entities.FarmEntities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public AddressEntity Address { get; set; }
     }
 }
