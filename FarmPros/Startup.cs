@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using FarmPros.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using FarmPros.ApplicationLogic.Services.Interfaces;
 using FarmPros.ApplicationLogic.Services;
+using FarmPros.Data.EntityFrameworkCore;
 
 namespace FarmPros
 {

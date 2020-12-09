@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace FarmPros.Data
+namespace FarmPros.Data.EntityFrameworkCore
 {
     public class ApplicationDbContext : IdentityDbContext
     {
