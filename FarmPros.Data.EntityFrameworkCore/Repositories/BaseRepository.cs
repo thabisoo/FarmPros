@@ -27,6 +27,12 @@ namespace FarmPros.Data.EntityFrameworkCore.Repositories
             return item;
         }
 
+        public async Task<T> AddAsync(T item)
+        {
+            await AsSet().AddAsync(item);
+            return item;
+        }
+
         public IEnumerable<T> AddRange(IEnumerable<T> item)
         {
             AsSet().AddRange(item);

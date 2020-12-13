@@ -1,5 +1,18 @@
-﻿@model FarmPros.ApplicationLogic.ViewModels.FarmViewModels.FarmViewModel
+﻿@model IEnumerable<FarmPros.ApplicationLogic.ViewModels.FarmViewModels.FarmViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "My Farms";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var farm in Model)
+{
+    <div class="list-group">
+        <a asp-area="" asp-controller="Farm" asp-action="Details" asp-route-id="@farm.Id" class="list-group-item list-group-item-action flex-column align-items-start mb-3">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@farm.Name</h5>
+                <small class="text-muted">3 days ago</small>
+            </div>
+            <small class="text-muted mt-3">Donec id elit non mi porta.</small>
+        </a>
+    </div>
 }

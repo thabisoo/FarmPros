@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using FarmPros.ApplicationLogic.Services.Interfaces;
 using FarmPros.ApplicationLogic.Services;
 using FarmPros.Data.EntityFrameworkCore;
+using FarmPros.Domain.EntityFrameworkCore;
+using FarmPros.Data.EntityFrameworkCore.Repositories;
 
 namespace FarmPros
 {
@@ -38,6 +40,8 @@ namespace FarmPros
             services.AddRazorPages();
 
             services.AddScoped<IFarmService, FarmService>();
+            services.AddScoped<UserManager<IdentityUser>>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

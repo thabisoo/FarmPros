@@ -12,6 +12,7 @@ namespace FarmPros.Domain.EntityFrameworkCore
         Task<T> FindAsync(Guid id);
         IEnumerable<T> Where(Expression<Func<T, bool>> p);
         T Add(T item);
+        Task<T> AddAsync(T item);
         IEnumerable<T> AddRange(IEnumerable<T> item);
         void Update(T item);
         Task<long> CountAsync();

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FarmPros.ApplicationLogic.Entities.FarmEntities
+namespace FarmPros.Domain.EntityFrameworkCore.Models
 {
-    public class FarmEntity
+    public class Farm
     {
         public Guid Id { get; set; }
         public string UserId { get; set; }
@@ -16,5 +17,7 @@ namespace FarmPros.ApplicationLogic.Entities.FarmEntities
         public string Province { get; set; }
         public string Country { get; set; }
         public string PostalCode { get; set; }
+
+        public virtual IdentityUser User { get; set; }
     }
 }

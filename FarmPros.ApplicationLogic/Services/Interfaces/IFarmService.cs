@@ -9,6 +9,7 @@ namespace FarmPros.ApplicationLogic.Services.Interfaces
     public interface IFarmService
     {
         Task<FarmEntity> AddFarmAsync(FarmEntity farmEntity);
-        IEnumerable<FarmEntity> GetUserFarms(Guid userId);
+        IEnumerable<FarmEntity> GetUserFarms(string userId);
+        Task<FarmEntity> GetFarmByIdAsync(Guid id);
     }
 }
